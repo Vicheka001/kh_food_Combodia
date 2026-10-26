@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vich Shop | Customer Storefront - Fresh Mart & Grocery</title>
+  <meta name="description" content="Welcome to Vich Shop Customer Storefront. Browse fresh drinks, artisan cookies, craft beers, crisp vegetables, butcher beef, and prepared meals with fast 30-min express neighborhood delivery.">
+  
+  <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="user">
+  <!-- Top Global Glowing Scroll Progress Bar -->
+  <div class="global-scroll-progress-bar" id="globalScrollProgressBar" aria-hidden="true"></div>
+
+  <!-- App Shell -->
+  <div id="app">
+    <!-- Ambient Living Aurora & Dynamic Particle Canvas Background -->
+    <div class="ambient-glow-wrapper" id="ambientBgWrapper" aria-hidden="true">
+      <canvas id="bgParticleCanvas" class="bg-particle-canvas"></canvas>
+      <div class="bg-noise-overlay"></div>
+      <div class="bg-grid-overlay"></div>
+      <div class="ambient-glow ambient-glow-1"></div>
+      <div class="ambient-glow ambient-glow-2"></div>
+      <div class="ambient-glow ambient-glow-3"></div>
+      <div class="ambient-glow ambient-glow-4"></div>
+      <div class="ambient-glow-center"></div>
+      <div class="aurora-light-beam"></div>
+      <div class="bg-vignette-overlay"></div>
+    </div>
+
+    <!-- Top Announcement Banner (Fresh & Interactive) -->
+    <div class="top-announcement">
+      <div class="announcement-content">
+        <div class="announcement-left">
+          <span>⚡ <strong>Grand Opening Vich Shop!</strong> Free delivery on orders over $25.</span>
+          <span class="announcement-promo-pill" id="btnCopyPromoNav" title="Click to copy & apply promo code">
+            <span>🏷️ Code: <strong>VICH10</strong></span>
+            <span style="opacity: 0.8; font-size: 0.7rem;">(10% OFF)</span>
+          </span>
+        </div>
+        <div class="announcement-right">
+          <span class="opening-hours">
+            <span class="live-status-dot"></span>
+            <span>Open Daily: 7:00 AM - 10:00 PM</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar (Ultra-Fresh Glass Island) -->
+    <header class="navbar" id="mainNavbar">
+      <div class="nav-container">
+        <!-- Brand Logo -->
+        <a href="user.html" class="logo" id="logoLink" title="Vich Shop Customer Storefront">
+          <div class="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title"><span class="logo-title-gradient">VICH</span> SHOP</span>
+            <span class="logo-sub"><span class="logo-live-pulse"></span> FRESH STOREFRONT</span>
+          </div>
+        </a>
+
+        <!-- Live Instant Search Bar with Live Suggestions Dropdown -->
+        <div class="search-box" id="navbarSearchBox">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search drink, cookie, beer, vegetable, beef, food..." autocomplete="off">
+            <kbd class="search-kbd-hint" title="Press / to search">/</kbd>
+            <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear search" style="display: none;">✕</button>
+          </div>
+
+          <!-- Dynamic Live Search Preview Dropdown -->
+          <div class="search-live-dropdown" id="searchLiveDropdown"></div>
+        </div>
+
+        <!-- Right Action Nav Buttons -->
+        <div class="nav-actions">
+          <!-- Role Indicator Pill -->
+          <div class="role-badge-nav customer" title="Active role: Shopper / Customer">
+            <span class="live-status-dot" style="margin-right: 2px;"></span>
+            <span>Customer Mode</span>
+          </div>
+
+          <!-- Navigation Switchers -->
+          <a href="index.html" class="nav-link-btn" title="Back to Portal Gateway Hub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span>Portal Hub</span>
+          </a>
+
+          <a href="admin.html" class="nav-link-btn btn-to-admin" title="Open Administrator Portal (Staff PIN Protected)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <span>Admin</span>
+          </a>
+
+          <!-- Quick Theme Switcher Button -->
+          <button class="nav-theme-toggle-btn" id="btnNavThemeToggle" type="button" title="Quick Theme Switcher (Ctrl+B)">
+            🎨
+          </button>
+
+          <!-- Cart Drawer Trigger Button -->
+          <button class="cart-trigger-btn" id="cartTriggerBtn" aria-label="Open Shopping Cart">
+            <div class="cart-icon-wrapper">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+              </svg>
+              <span class="cart-count-badge" id="cartCountBadge">0</span>
+            </div>
+            <span class="cart-amount-text" id="cartTotalNav">$0.00</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT VIEW -->
+    <main class="main-content">
+      <div id="shopViewSection" class="view-panel active">
+        <!-- Hero Banner -->
+        <section class="hero-section">
+          <div class="hero-backdrop"></div>
+          <div class="hero-floating-elements" aria-hidden="true">
+            <div class="float-item float-item-1" onclick="VichApp.openQuickView('prod-drink-1')" title="Valencia Orange Juice">
+              <img class="float-thumb" src="images/drink_orange_juice.jpg" alt="Orange Juice">
+              <span class="float-pill-label">Cold-Pressed Juice</span>
+            </div>
+            <div class="float-item float-item-2" onclick="VichApp.openQuickView('prod-cookie-1')" title="Belgian Chocolate Cookies">
+              <img class="float-thumb" src="images/cookie_chocolate_chunks.jpg" alt="Cookies">
+              <span class="float-pill-label">Artisan Cookie</span>
+            </div>
+            <div class="float-item float-item-3" onclick="VichApp.openQuickView('prod-beef-2')" title="A5 Wagyu Sirloin">
+              <img class="float-thumb" src="images/beef_wagyu_sirloin.jpg" alt="Wagyu">
+              <span class="float-pill-label">A5 Wagyu Beef</span>
+            </div>
+            <div class="float-item float-item-4" onclick="VichApp.openQuickView('prod-veg-1')" title="Organic Romaine Lettuce">
+              <img class="float-thumb" src="images/veg_romaine_lettuce.jpg" alt="Lettuce">
+              <span class="float-pill-label">Organic Greens</span>
+            </div>
+            <div class="float-item float-item-5" onclick="VichApp.openQuickView('prod-beer-2')" title="Juicy Craft IPA">
+              <img class="float-thumb" src="images/beer_craft_ipa.jpg" alt="Craft IPA">
+              <span class="float-pill-label">Craft Beer</span>
+            </div>
+            <div class="float-item float-item-6" onclick="VichApp.openQuickView('prod-food-1')" title="Fresh Salmon Poke Bowl">
+              <img class="float-thumb" src="images/food_salmon_poke.jpg" alt="Salmon Poke">
+              <span class="float-pill-label">Salmon Poke</span>
+            </div>
+          </div>
+          <div class="hero-content">
+            <span class="hero-tag">✨ FRESH • LOCAL • HIGH QUALITY</span>
+            <h1 class="hero-title">Your Daily Essentials,<br><span class="hero-highlight">Delivered Crisp & Fresh</span></h1>
+            <p class="hero-desc">Explore hand-selected fresh drinks, bakery cookies, craft beers, organic vegetables, butcher beef, and prepared chef food right at Vich Shop.</p>
+            <div class="hero-features">
+              <div class="feature-item">
+                <span class="feat-icon">🥦</span>
+                <span>100% Fresh Guaranteed</span>
+              </div>
+              <div class="feature-item">
+                <span class="feat-icon">⚡</span>
+                <span>Fast 30-Min Express</span>
+              </div>
+              <div class="feature-item">
+                <span class="feat-icon">🏷️</span>
+                <span>Direct Mart Best Prices</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-stats-card">
+            <div class="hero-stat">
+              <span class="stat-number" id="heroTotalProductsCount">12</span>
+              <span class="stat-label">In-Stock Items</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat">
+              <span class="stat-number">6</span>
+              <span class="stat-label">Main Aisles</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat">
+              <span class="stat-number">4.9 ★</span>
+              <span class="stat-label">Customer Rating</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pro Designer Billboard Poster Showcase Section -->
+        <section class="pro-posters-section">
+          <div class="pro-posters-header">
+            <div class="pro-poster-badge">
+              <span>💎 PRO DESIGNER BILLBOARD COLLECTION</span>
+            </div>
+            <h2 class="pro-posters-title">Commercial Advertising Masterpieces</h2>
+            <p class="pro-posters-subtitle">Experience our signature mart goods elevated with Michelin-star studio lighting, dynamic splashes, and luxury poster art.</p>
+          </div>
+
+          <div class="carousel-nav-wrapper poster-nav-wrapper">
+            <button type="button" class="carousel-arrow-btn prev" id="btnPosterPrev" aria-label="Scroll billboard posters left" title="Scroll left">‹</button>
+            <div class="pro-posters-scroll" id="proPostersScroll">
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-drink-1')">
+              <div class="pro-poster-media">
+                <img src="images/poster_drink_orange_juice.jpg" alt="Orange Juice Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">👑 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Valencia Orange Splash</h4>
+                <p>Pure Cold-Pressed • $3.50</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-beef-1')">
+              <div class="pro-poster-media">
+                <img src="images/poster_beef_ribeye_steak.jpg" alt="Prime Ribeye Steak Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🥩 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Australian Prime Ribeye</h4>
+                <p>Matured Marbled Cut • $18.50</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-beer-2')">
+              <div class="pro-poster-media">
+                <img src="images/poster_beer_craft_ipa.jpg" alt="Craft IPA Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🍺 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Juicy Mountain Craft IPA</h4>
+                <p>Artisan Hopped • $4.90</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-cookie-1')">
+              <div class="pro-poster-media">
+                <img src="images/poster_cookie_chocolate_chunks.jpg" alt="Chocolate Chunk Cookie Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🍪 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Dark Chocolate Decadence</h4>
+                <p>70% Belgian Dark • $4.80</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-food-1')">
+              <div class="pro-poster-media">
+                <img src="images/poster_food_salmon_poke.jpg" alt="Salmon Poke Bowl Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🍱 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Wild Salmon Sashimi Poke</h4>
+                <p>Fresh Kitchen Poke • $9.50</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-veg-2')">
+              <div class="pro-poster-media">
+                <img src="images/poster_veg_cherry_tomatoes.jpg" alt="Cherry Tomatoes Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🥦 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Organic Vine Ruby Tomatoes</h4>
+                <p>Dewy Farm Harvest • $2.95</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-drink-2')">
+              <div class="pro-poster-media">
+                <img src="images/poster_drink_matcha_latte.jpg" alt="Matcha Latte Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🍵 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Ceremonial Kyoto Uji Matcha</h4>
+                <p>First Harvest Green Tea • $4.25</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-beef-2')">
+              <div class="pro-poster-media">
+                <img src="images/poster_beef_wagyu_sirloin.jpg" alt="A5 Japanese Wagyu Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🥩 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Kagoshima A5 Wagyu Sirloin</h4>
+                <p>Intense Snowflake Marbling • $29.00</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-beer-1')">
+              <div class="pro-poster-media">
+                <img src="images/poster_beer_silver_lager.jpg" alt="Silver Lager Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🍺 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Sub-Zero Cold Silver Lager</h4>
+                <p>Ice-Frosted Brew • $2.60</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-cookie-2')">
+              <div class="pro-poster-media">
+                <img src="images/poster_cookie_butter_wafers.jpg" alt="Butter Wafers Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🍪 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Salted Caramel Butter Wafers</h4>
+                <p>Golden Ribbons &amp; Almonds • $5.20</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-veg-1')">
+              <div class="pro-poster-media">
+                <img src="images/poster_veg_romaine_lettuce.jpg" alt="Romaine Lettuce Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🥦 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Organic Romaine Hearts</h4>
+                <p>Crisp Dewdrop Splashes • $2.20</p>
+              </div>
+            </div>
+
+            <div class="pro-poster-card" onclick="VichApp.openQuickView('prod-food-2')">
+              <div class="pro-poster-media">
+                <img src="images/poster_food_rotisserie_chicken.jpg" alt="Rotisserie Chicken Pro Poster" loading="lazy">
+                <span class="pro-poster-tag">🍱 PRO POSTER</span>
+                <div class="pro-poster-overlay">
+                  <span>Quick View &amp; Order →</span>
+                </div>
+              </div>
+              <div class="pro-poster-caption">
+                <h4>Hearth Rotisserie Roast Chicken</h4>
+                <p>Slow-Spit Herb Butter • $11.00</p>
+              </div>
+            </div>
+          </div>
+            <button type="button" class="carousel-arrow-btn next" id="btnPosterNext" aria-label="Scroll billboard posters right" title="Scroll right">›</button>
+          </div>
+        </section>
+
+        <!-- Category Filter Carousel / Bar -->
+        <section class="category-section" id="categorySection">
+          <div class="section-header-compact">
+            <h2>Shop By Aisle &amp; Category</h2>
+            <span class="category-hint">Click category to filter products instantly</span>
+          </div>
+
+          <div class="carousel-nav-wrapper category-nav-wrapper">
+            <button type="button" class="carousel-arrow-btn prev" id="btnCatPrev" aria-label="Scroll categories left" title="Scroll left">‹</button>
+            <div class="category-pills-container" id="categoryPills">
+            <button class="cat-pill active" data-category="all">
+              <span class="cat-icon-thumb"><img src="images/cat_all_mart.jpg" alt="All"></span>
+              <span class="cat-name">All Products</span>
+              <span class="cat-pill-count" id="countAll">0</span>
+            </button>
+            <button class="cat-pill" data-category="Drink">
+              <span class="cat-icon-thumb"><img src="images/drink_orange_juice.jpg" alt="Drink"></span>
+              <span class="cat-name">Drink</span>
+              <span class="cat-pill-count" id="countDrink">0</span>
+            </button>
+            <button class="cat-pill" data-category="Cookie">
+              <span class="cat-icon-thumb"><img src="images/cookie_chocolate_chunks.jpg" alt="Cookie"></span>
+              <span class="cat-name">Cookie</span>
+              <span class="cat-pill-count" id="countCookie">0</span>
+            </button>
+            <button class="cat-pill" data-category="Beer">
+              <span class="cat-icon-thumb"><img src="images/beer_silver_lager.jpg" alt="Beer"></span>
+              <span class="cat-name">Beer</span>
+              <span class="cat-pill-count" id="countBeer">0</span>
+            </button>
+            <button class="cat-pill" data-category="Vegetable">
+              <span class="cat-icon-thumb"><img src="images/veg_romaine_lettuce.jpg" alt="Vegetable"></span>
+              <span class="cat-name">Vegetable</span>
+              <span class="cat-pill-count" id="countVegetable">0</span>
+            </button>
+            <button class="cat-pill" data-category="Beef">
+              <span class="cat-icon-thumb"><img src="images/beef_wagyu_sirloin.jpg" alt="Beef"></span>
+              <span class="cat-name">Beef</span>
+              <span class="cat-pill-count" id="countBeef">0</span>
+            </button>
+            <button class="cat-pill" data-category="Food">
+              <span class="cat-icon-thumb"><img src="images/food_salmon_poke.jpg" alt="Food"></span>
+              <span class="cat-name">Food</span>
+              <span class="cat-pill-count" id="countFood">0</span>
+            </button>
+          </div>
+            <button type="button" class="carousel-arrow-btn next" id="btnCatNext" aria-label="Scroll categories right" title="Scroll right">›</button>
+          </div>
+        </section>
+
+        <!-- 20% Scroll Gate HUD Indicator Banner -->
+        <div class="scroll-gate-hud" id="scrollGateHud">
+          <div class="scroll-gate-content">
+            <div class="scroll-gate-left">
+              <span class="scroll-gate-icon" id="scrollGateIcon">🔒</span>
+              <div class="scroll-gate-text-col">
+                <div class="scroll-gate-status" id="scrollGateStatus">
+                  Scroll 20% down to reveal fresh goods catalog
+                </div>
+                <div class="scroll-gate-sub" id="scrollGateSub">
+                  Explore hero &amp; billboard posters above, or scroll down to unlock products
+                </div>
+              </div>
+            </div>
+            <div class="scroll-gate-right">
+              <div class="scroll-gate-meter">
+                <span class="scroll-gate-meter-label" id="scrollGateMeterLabel">Scroll: 0% / 20%</span>
+                <div class="scroll-gate-progress-track">
+                  <div class="scroll-gate-progress-fill" id="scrollGateProgressFill" style="width: 0%;"></div>
+                </div>
+              </div>
+              <button type="button" class="btn-scroll-reveal" id="btnScrollRevealNow" title="Click to auto-scroll & reveal products">
+                <span id="btnScrollRevealText">Scroll &amp; Reveal ↓</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll-Triggered Products Wrapper (Revealed at >= 20% scroll) -->
+        <div id="storeProductsSection" class="store-products-reveal-section is-revealed">
+          <!-- Filter & Sorting Controls -->
+          <section class="catalog-controls">
+            <div class="catalog-left">
+              <h3 class="catalog-heading" id="catalogHeading">All Fresh Goods</h3>
+              <span class="catalog-items-found" id="catalogCountDisplay">Showing all items</span>
+            </div>
+            <div class="catalog-right">
+              <!-- View Mode Switcher: Aisle Carousels (Horizontal Scroll) vs Multi-Column Grid -->
+              <div class="view-mode-toggle" id="viewModeToggle" role="group" aria-label="Catalog layout mode">
+                <button type="button" class="btn-view-mode active" id="btnViewAisles" data-view="aisles" title="Browse by Aisle Carousels (Horizontal Scroll)">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M4 6h16M4 12h16M4 18h16"/>
+                  </svg>
+                  <span>Aisles (Scroll)</span>
+                </button>
+                <button type="button" class="btn-view-mode" id="btnViewGrid" data-view="grid" title="Browse in Multi-Column Grid">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+                  </svg>
+                  <span>Grid</span>
+                </button>
+              </div>
+
+              <div class="filter-group">
+                <label for="sortBySelect">Sort by:</label>
+                <select id="sortBySelect" class="custom-select">
+                  <option value="featured">Featured / Newest</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="name-asc">Alphabetical (A - Z)</option>
+                  <option value="stock-desc">Stock Availability</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="stockFilterSelect">Availability:</label>
+                <select id="stockFilterSelect" class="custom-select">
+                  <option value="all">All Items</option>
+                  <option value="in-stock">In Stock Only</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <!-- Active Filter Chips Display -->
+          <div class="active-filters-bar" id="activeFiltersBar" style="display: none;">
+            <span class="filter-label">Filters:</span>
+            <div class="filter-chips" id="filterChipsList"></div>
+            <button class="clear-all-filters-btn" id="clearAllFiltersBtn">Clear All</button>
+          </div>
+
+          <!-- Product Grid -->
+          <section class="products-grid-section">
+            <div class="products-grid" id="productsGrid">
+              <!-- Populated reactively by app.js -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+              <div class="empty-icon">🔍</div>
+              <h3>No products found</h3>
+              <p>We couldn't find any products matching your current search or category filter.</p>
+              <button class="btn-primary" id="btnResetFilters">Show All Products</button>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- Floating Aisle Quick-Scroll Dock (Appears when browsing products) -->
+      <nav class="aisle-scroll-dock" id="aisleScrollDock" aria-label="Aisle Quick Navigation">
+        <div class="dock-badge">AISLES</div>
+        <button type="button" class="dock-aisle-pill active" data-aisle="all" title="View All Aisles">🌟 All</button>
+        <button type="button" class="dock-aisle-pill" data-aisle="Drink" title="Jump to Cold Drinks">🥤 Drink</button>
+        <button type="button" class="dock-aisle-pill" data-aisle="Cookie" title="Jump to Bakery Cookies">🍪 Cookie</button>
+        <button type="button" class="dock-aisle-pill" data-aisle="Beer" title="Jump to Craft Beers">🍺 Beer</button>
+        <button type="button" class="dock-aisle-pill" data-aisle="Vegetable" title="Jump to Farm Greens">🥦 Veg</button>
+        <button type="button" class="dock-aisle-pill" data-aisle="Beef" title="Jump to Butcher Beef">🥩 Beef</button>
+        <button type="button" class="dock-aisle-pill" data-aisle="Food" title="Jump to Prepared Food">🍱 Food</button>
+      </nav>
+    </main>
+
+    <!-- ============================================== -->
+    <!-- SLIDE-OVER SHOPPING CART DRAWER                -->
+    <!-- ============================================== -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+      <div class="cart-header">
+        <div class="cart-header-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+          </svg>
+          <h3>Your Fresh Basket</h3>
+          <span class="cart-items-count-badge" id="cartDrawerItemCount">0 items</span>
+        </div>
+        <button class="btn-close-drawer" id="btnCloseCart" aria-label="Close cart">✕</button>
+      </div>
+
+      <!-- Free Delivery Progress Bar -->
+      <div class="delivery-perk-box">
+        <div class="perk-label">
+          <span>🛵 Express Mart Delivery</span>
+          <span class="perk-badge">FREE over $25</span>
+        </div>
+        <div class="perk-progress-track">
+          <div class="perk-progress-bar" id="deliveryProgressBar" style="width: 100%;"></div>
+        </div>
+      </div>
+
+      <!-- Cart Item Rows List -->
+      <div class="cart-items-scrollable" id="cartItemsContainer">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Cart Empty State -->
+      <div class="cart-empty-placeholder" id="cartEmptyState">
+        <div class="empty-cart-icon">🛒</div>
+        <h4>Your basket is empty</h4>
+        <p>Explore our fresh aisles of drinks, cookies, beers, greens, beef and meals.</p>
+        <button class="btn-primary" id="btnCartStartShopping">Start Shopping</button>
+      </div>
+
+      <!-- Cart Drawer Footer (Checkout, Promos, Total) -->
+      <div class="cart-footer" id="cartFooter" style="display: none;">
+        <!-- Promo Coupon Input -->
+        <div class="promo-box">
+          <input type="text" id="promoInput" placeholder="Promo code (e.g., VICH10)" maxlength="15">
+          <button class="btn-apply-promo" id="btnApplyPromo">Apply</button>
+        </div>
+
+        <div class="cart-summary-calculations">
+          <div class="calc-row">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="calc-row text-success" id="promoDiscountRow" style="display: none;">
+            <span>Discount Promo (10%)</span>
+            <span id="promoDiscountVal">-$0.00</span>
+          </div>
+          <div class="calc-row">
+            <span>Estimated Delivery</span>
+            <span class="text-free">FREE</span>
+          </div>
+          <div class="calc-divider"></div>
+          <div class="calc-row calc-total">
+            <span>Total Payable</span>
+            <span class="total-big-val" id="cartTotalDisplay">$0.00</span>
+          </div>
+        </div>
+
+        <div class="cart-checkout-actions">
+          <button class="btn-checkout-primary" id="btnOpenCheckout">
+            <span>Proceed to Checkout</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <button class="btn-clear-cart" id="btnClearCart">Clear Entire Basket</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ============================================== -->
+    <!-- MODAL: QUICK VIEW PRODUCT DETAILS              -->
+    <!-- ============================================== -->
+    <div class="modal-backdrop" id="quickViewBackdrop">
+      <div class="modal-card modal-quick-view">
+        <div class="modal-header">
+          <span class="badge-role" id="qvCategoryBadge">Fresh Mart Item</span>
+          <button class="btn-close" id="btnCloseQuickView">✕</button>
+        </div>
+        <div class="modal-body qv-grid" id="quickViewBody">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL: CHECKOUT & THERMAL RECEIPT              -->
+    <!-- ============================================== -->
+    <div class="modal-backdrop" id="checkoutBackdrop">
+      <div class="modal-card modal-checkout">
+        <div class="modal-header">
+          <h3>Vich Shop Mart Checkout</h3>
+          <button class="btn-close" id="btnCloseCheckout">✕</button>
+        </div>
+
+        <!-- Form Section -->
+        <div id="checkoutFormSection">
+          <form id="checkoutForm" class="checkout-form">
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label for="custName">Customer Full Name <span class="required">*</span></label>
+                <input type="text" id="custName" placeholder="e.g. Sokha Chan" required>
+              </div>
+
+              <div class="form-group">
+                <label for="custPhone">Contact Phone Number <span class="required">*</span></label>
+                <input type="tel" id="custPhone" placeholder="012 345 678" required>
+              </div>
+
+              <div class="form-group">
+                <label for="custPayment">Payment Option <span class="required">*</span></label>
+                <select id="custPayment" required>
+                  <option value="Cash on Delivery (COD)">💵 Cash on Delivery (COD)</option>
+                  <option value="KHQR / ABA Mobile Bank">📱 KHQR / ABA Mobile Bank</option>
+                  <option value="Credit / Debit Card (Visa/Master)">💳 Visa / MasterCard</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="custAddress">Delivery Address / Room / Street <span class="required">*</span></label>
+                <input type="text" id="custAddress" placeholder="Street 271, Sangkat Boeng Tumpun, Phnom Penh" required>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="custNotes">Delivery Notes (Optional)</label>
+                <input type="text" id="custNotes" placeholder="e.g. Call upon arrival, leave at front gate">
+              </div>
+            </div>
+
+            <!-- Mini Summary -->
+            <div class="checkout-order-mini-summary">
+              <h4>Order Items Summary</h4>
+              <div id="checkoutItemsList" class="mini-summary-items"></div>
+              <div class="mini-summary-total">
+                <strong>Total Amount:</strong>
+                <span id="checkoutFinalAmount">$0.00</span>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn-primary btn-confirm-order" id="btnSubmitOrder">
+                <span>Confirm & Place Order</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Receipt Section (shown after checkout) -->
+        <div id="checkoutReceiptSection" style="display: none;">
+          <div class="receipt-success-card">
+            <div class="receipt-check-circle">✓</div>
+            <h3>Thank You for Shopping at Vich Shop!</h3>
+            <p>Your order has been recorded and is being prepared with care.</p>
+            
+            <div class="printed-receipt" id="printedReceipt">
+              <div class="receipt-header">
+                <h2>VICH SHOP</h2>
+                <p>Fresh Mart & Groceries</p>
+                <div class="receipt-meta">
+                  <span id="receiptOrderNumber">#VICH-9821</span> • 
+                  <span id="receiptOrderDate">Oct 07, 2026</span>
+                </div>
+              </div>
+              <div class="receipt-divider">--------------------------------</div>
+              <div class="receipt-customer-details" id="receiptCustomerDetails">
+                <!-- Customer info -->
+              </div>
+              <div class="receipt-divider">--------------------------------</div>
+              <div class="receipt-items-list" id="receiptItemsList">
+                <!-- Items list -->
+              </div>
+              <div class="receipt-divider">--------------------------------</div>
+              <div class="receipt-totals" id="receiptTotals">
+                <!-- Totals -->
+              </div>
+              <div class="receipt-footer-msg">
+                <p>Have a wonderful day!</p>
+                <small>For inquiries: contact@vichshop.com</small>
+              </div>
+            </div>
+
+            <div class="receipt-actions">
+              <button class="btn-secondary" id="btnPrintReceipt">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
+                </svg>
+                <span>Print Receipt</span>
+              </button>
+              <button class="btn-primary" id="btnBackToStoreAfterOrder">
+                Continue Shopping
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confetti Particle Celebration Canvas -->
+    <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo-text">
+            <span class="logo-title text-white">VICH SHOP</span>
+            <span class="logo-sub text-white-dim">Quality Mart for Every Home</span>
+          </div>
+          <p class="footer-about">Providing the freshest drinks, cookies, beers, greens, meats, and deli foods with love and fast neighborhood service.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Mart Aisles</h4>
+          <ul>
+            <li><a href="user.html?category=Drink" class="footer-cat-link" data-cat="Drink">🥤 Fresh Drinks & Juices</a></li>
+            <li><a href="user.html?category=Cookie" class="footer-cat-link" data-cat="Cookie">🍪 Cookies & Biscuits</a></li>
+            <li><a href="user.html?category=Beer" class="footer-cat-link" data-cat="Beer">🍺 Craft & Import Beers</a></li>
+            <li><a href="user.html?category=Vegetable" class="footer-cat-link" data-cat="Vegetable">🥦 Fresh Farm Vegetables</a></li>
+            <li><a href="user.html?category=Beef" class="footer-cat-link" data-cat="Beef">🥩 Premium Butcher Beef</a></li>
+            <li><a href="user.html?category=Food" class="footer-cat-link" data-cat="Food">🍱 Prepared Delicatessen & Food</a></li>
+          </ul>
+        </div>
+        <div class="footer-admin-info">
+          <h4>Administration</h4>
+          <p>Store managers and staff can input new items, replenish inventory, and track stock in the Administrator Portal.</p>
+          <a href="admin.html" class="btn-outline-white" id="btnFooterAdmin">Open Admin Portal 🔒</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Vich Shop Mart System. All rights reserved. • <a href="index.html" style="color: #94a3b8; text-decoration: underline;">Portal Gateway Hub</a></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
